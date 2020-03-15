@@ -19,7 +19,7 @@ public class Apartments implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull @Min(1)
+    @NotNull @Min(1) @Max(10)
     private int numberOfRooms;
 
     @NotNull @Min(1)
