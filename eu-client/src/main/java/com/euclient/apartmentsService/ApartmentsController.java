@@ -26,21 +26,11 @@ public class ApartmentsController {
 
     @GetMapping("/apartments/all")
     public Response findAll() throws SQLException {
-//        return ResponseEntity.ok(apartmentsService.findAll());
-//        System.out.println("\n\n\n" + serviceInstanceId);
-//        return apartmentsService.findAll();
         return new Response(serviceInstanceId, apartmentsService.findAll());
     }
 
     @PostMapping(value = "/apartments/add", produces = "application/json; charset=utf-8")
     public Apartments add(@Valid @RequestBody Apartments apartments) throws SQLException {
-//        try {
-//            Apartments createdApartment = apartmentsService.add(apartments);
-//            return ResponseEntity.ok("Successfully added apartment: " + createdApartment);
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
-//                    .body(e.getMessage());
-//        }
         return apartmentsService.add(apartments);
     }
 
