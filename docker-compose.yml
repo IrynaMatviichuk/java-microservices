@@ -1,0 +1,39 @@
+version: '3.4'
+services:
+  eu-server:
+    build:
+      context: eu-server
+      dockerfile: Dockerfile
+    network_mode: host
+    ports:
+        - "8761:8761"
+
+  eu-client:
+    build:
+      context: eu-client
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    network_mode: host
+    environment:
+      WAITFORIT_HOST: eu-server
+      WAITFORIT_PORT: 8761
+      WAITFORIT_TIMEOUT: 30
+    depends_on:
+      - eu-server
+      - postgres
+
+  postgres:
+    image: postgres
+    restart: always
+    network_mode: host
+    logging:
+      driver: none
+    environment:
+      POSTGRES_DATABASE: 'apartments_db'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+    ports:
+      - '5432:5432'
+    # volumes:
+    #   - /docker-volumes/postgres/data:/var/lib/postgresql/data
