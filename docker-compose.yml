@@ -1,39 +1,75 @@
 version: '3.4'
+
 services:
+
+  postgres:
+    image: postgres:12
+    restart: always
+    # logging:
+    #   driver: none
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: apartmentsDb
+      PGPORT: 5433
+    ports:
+      - "5433:5433"
+    volumes:
+      - /docker/volumes/postgres:/var/lib/postgresql/data
+
   eu-server:
     build:
       context: eu-server
       dockerfile: Dockerfile
-    network_mode: host
     ports:
         - "8761:8761"
+
+  conf-server:
+    build:
+      context: conf-server
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    environment:
+      WAITFORIT_HOST: eu-server
+      WAITFORIT_PORT: 8761
+      WAITFOTIT_TIMEOUT: 15
+    depends_on:
+      - eu-server
+
 
   eu-client:
     build:
       context: eu-client
       dockerfile: Dockerfile
     ports:
-      - "8081:8081"
-    network_mode: host
+      - "8081-8082:8081"
     environment:
-      WAITFORIT_HOST: eu-server
-      WAITFORIT_PORT: 8761
+      WAITFORIT_HOST: conf-server
+      WAITFORIT_PORT: 8888
       WAITFORIT_TIMEOUT: 30
     depends_on:
       - eu-server
       - postgres
+      - conf-server
 
-  postgres:
-    image: postgres
-    restart: always
-    network_mode: host
-    logging:
-      driver: none
-    environment:
-      POSTGRES_DATABASE: 'apartments_db'
-      POSTGRES_USER: 'postgres'
-      POSTGRES_PASSWORD: 'postgres'
+  api-gateway:
+    build:
+      context: api-gateway
+      dockerfile: Dockerfile
     ports:
-      - '5432:5432'
-    # volumes:
-    #   - /docker-volumes/postgres/data:/var/lib/postgresql/data
+      - "8080:8080"
+    environment:
+      WAITFORIT_HOST: eu-client
+      WAITFORIT_PORT: 8081
+      WAITFORIT_TIMEOUT: 45
+    depends_on:
+      - eu-server
+      - eu-client
+      - conf-server
+
+  rabbit:
+    image: rabbitmq:3
+    ports:
+      - "15672:15672"
+      - "5672:5672"
