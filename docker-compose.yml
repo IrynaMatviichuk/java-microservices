@@ -33,7 +33,7 @@ services:
     environment:
       WAITFORIT_HOST: eu-server
       WAITFORIT_PORT: 8761
-      WAITFOTIT_TIMEOUT: 15
+      WAITFOTIT_TIMEOUT: 30
     depends_on:
       - eu-server
 
@@ -46,7 +46,7 @@ services:
     environment:
       WAITFORIT_HOST: conf-server
       WAITFORIT_PORT: 8888
-      WAITFORIT_TIMEOUT: 30
+      WAITFORIT_TIMEOUT: 60
     depends_on:
       - eu-server
       - postgres
@@ -61,7 +61,7 @@ services:
     environment:
       WAITFORIT_HOST: service
       WAITFORIT_PORT: 8081
-      WAITFORIT_TIMEOUT: 60
+      WAITFORIT_TIMEOUT: 90
     depends_on:
       - eu-server
       - service

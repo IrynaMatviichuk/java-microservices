@@ -10,6 +10,9 @@
 - Build and run project with docker-compose:
   - one instance: `docker-compose up --build`
   - two instances: `docker-compose up --build --scale service=2`
+- Additional information:
+  - configurations in config server are stored in `/configurations` folder
+
 
 ### services
 - Eureka Server: `http://localhost:8761`  
