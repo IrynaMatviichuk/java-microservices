@@ -37,7 +37,6 @@ services:
     depends_on:
       - eu-server
 
-
   service:
     build:
       context: eu-client

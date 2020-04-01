@@ -9,7 +9,7 @@
 - Enter project directory: `cd java-microservices`
 - Build and run project with docker-compose:
   - one instance: `docker-compose up --build`
-  - two instances: `docker-compose up --build --scale eu-client=2`
+  - two instances: `docker-compose up --build --scale service=2`
 
 ### services
 - Eureka Server: `http://localhost:8761`  
