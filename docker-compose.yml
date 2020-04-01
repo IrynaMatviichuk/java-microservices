@@ -5,8 +5,8 @@ services:
   postgres:
     image: postgres:12
     restart: always
-    # logging:
-    #   driver: none
+    logging:
+      driver: none
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
@@ -38,12 +38,12 @@ services:
       - eu-server
 
 
-  eu-client:
+  service:
     build:
       context: eu-client
       dockerfile: Dockerfile
     ports:
-      - "8081-8082:8081"
+      - "127.0.0.1:8081-8082:8081"
     environment:
       WAITFORIT_HOST: conf-server
       WAITFORIT_PORT: 8888
@@ -58,14 +58,14 @@ services:
       context: api-gateway
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
     environment:
-      WAITFORIT_HOST: eu-client
+      WAITFORIT_HOST: service
       WAITFORIT_PORT: 8081
-      WAITFORIT_TIMEOUT: 45
+      WAITFORIT_TIMEOUT: 60
     depends_on:
       - eu-server
-      - eu-client
+      - service
       - conf-server
 
   rabbit:
