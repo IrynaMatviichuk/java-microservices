@@ -3,7 +3,6 @@ package com.euclient.apartmentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,25 +14,25 @@ public class ApartmentsService {
 
     public ApartmentsService() {}
 
-    public List<Apartments> findAll() throws SQLException {
-        List<Apartments> apartmentsEntityList = new ArrayList<>();
+    public List<Apartment> findAll() {
+        List<Apartment> apartmentsEntityList = new ArrayList<>();
         apartmentsRepository.findAll().forEach(apartmentsEntityList::add);
         return  apartmentsEntityList;
     }
 
-    public boolean existsById(Long id) throws SQLException {
+    public boolean existsById(Long id) {
         return apartmentsRepository.existsById(id);
     }
 
-    public Apartments add(Apartments apartment) throws SQLException {
+    public Apartment add(Apartment apartment) {
         return apartmentsRepository.save(apartment);
     }
 
-    public void deleteById(Long id) throws SQLException {
+    public void deleteById(Long id) {
         apartmentsRepository.deleteById(id);
     }
 
-    public Apartments updateById(Apartments apartment) throws SQLException {
+    public Apartment updateById(Apartment apartment) {
         return apartmentsRepository.save(apartment);
     }
 }
