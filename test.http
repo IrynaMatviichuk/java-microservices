@@ -1,3 +1,49 @@
+### lab4
+
+### fetch entities
+GET http://localhost:8080/apartments/all
+
+### create entity
+POST http://localhost:8080/apartments/add
+Content-Type: application/json
+
+{
+    "numberOfRooms": 1,
+    "floorNumber": 3,
+    "totalFloorsNumber": 3,
+    "square": 35,
+    "wallType": "wallType",
+    "heatingType": "heatingType",
+    "apartmentCondition": "apartmentCondition",
+    "streetName": "streetName",
+    "buildingNumber": "323a",
+    "apartmentNumber": 4
+}
+
+### update entity
+POST http://localhost:8080/apartments/update
+Content-Type: application/json
+
+{
+    "id": 326,
+    "numberOfRooms": 1,
+    "floorNumber": 3,
+    "totalFloorsNumber": 3,
+    "square": 35,
+    "wallType": "updatedWallType",
+    "heatingType": "updatedHeatingType",
+    "apartmentCondition": "apdatedApartmentCondition",
+    "streetName": "updatedStreetName",
+    "buildingNumber": "323a",
+    "apartmentNumber": 4
+}
+
+### delete entity
+GET http://localhost:8080/apartments/delete/258
+
+
+### lab3
+
 ### api-gateway config
 GET http://localhost:8080/configs
 

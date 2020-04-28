@@ -1,19 +1,15 @@
 package com.euclient.apartmentsService;
 
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.time.LocalDate;
 
 @Data
 @Entity
-public class Apartments implements Serializable {
+public class Apartment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,27 +27,23 @@ public class Apartments implements Serializable {
     @NotNull @Min(20)
     private float square;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotNull @Past
-    private LocalDate constructionYear;
-
-    @NotNull @NotEmpty
+    @NotNull
     @Size(min=1, max=50)
     private String wallType;
 
-    @NotNull @NotEmpty
+    @NotNull
     @Size(min=1, max=50)
     private String heatingType;
 
-    @NotNull @NotEmpty
+    @NotNull
     @Size(min=1, max=50)
     private String apartmentCondition;
 
-    @NotNull @NotEmpty
+    @NotNull
     @Size(min=1, max=50)
     private String streetName;
 
-    @NotNull @NotEmpty
+    @NotNull
     @Size(min=1, max=5)
     private String buildingNumber;
 
