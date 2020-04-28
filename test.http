@@ -25,7 +25,7 @@ POST http://localhost:8080/apartments/update
 Content-Type: application/json
 
 {
-    "id": 326,
+    "id": 1,
     "numberOfRooms": 1,
     "floorNumber": 3,
     "totalFloorsNumber": 3,
@@ -39,7 +39,7 @@ Content-Type: application/json
 }
 
 ### delete entity
-GET http://localhost:8080/apartments/delete/258
+GET http://localhost:8080/apartments/delete/1
 
 
 ### lab3

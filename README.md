@@ -1,5 +1,5 @@
 # java-microservices
-## lab4
+## lab #4
 
 ### requirements
 - docker
@@ -11,6 +11,9 @@
 - Build and run project with docker-compose:
   - one instance: `docker-compose up --build`
   - two instances: `docker-compose up --build --scale service=2`
+  - stop container: `docker stop <container-name/container-id>`
+  - run stoped container: `docker start <container-name/container-id>`
+  - grafana default credentials: admin/admin
 - Additional information:
   - `dashboard.json` is at the root of the project
   - configurations in config server are stored in `/configurations` folder
