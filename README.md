@@ -1,4 +1,5 @@
-# lab3
+# java-microservices
+## lab4
 
 ### requirements
 - docker
@@ -11,6 +12,7 @@
   - one instance: `docker-compose up --build`
   - two instances: `docker-compose up --build --scale service=2`
 - Additional information:
+  - `dashboard.json` is at the root of the project
   - configurations in config server are stored in `/configurations` folder
 
 
@@ -20,3 +22,4 @@
 - Service (instance 1): `http://localhost:8081`  
 - Service (instance 2): `http://localhost:8082`  
 - Api-gateway: `http://localhost:8080`  
+- Grafana UI: `http://localhost:3000`  

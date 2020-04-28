@@ -5,6 +5,8 @@ import com.apigateway.responses.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 public class ApartmentsServerController {
 
@@ -27,8 +29,8 @@ public class ApartmentsServerController {
         return this.proxyService.update(apartment);
     }
 
-    @PostMapping("/apartments/delete/{id}")
-    public String deleteById(@PathVariable Long id) {
+    @GetMapping("/apartments/delete/{id}")
+    public Map<String, String> deleteById(@PathVariable Long id) {
         return this.proxyService.deleteById(id);
     }
 }

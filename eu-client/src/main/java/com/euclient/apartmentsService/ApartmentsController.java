@@ -10,6 +10,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -66,11 +67,14 @@ public class ApartmentsController {
     }
 
     @GetMapping("/apartments/delete/{id}")
-    public String deleteById(@PathVariable Long id) {
+    public Map<String, String> deleteById(@PathVariable Long id) {
         if (!apartmentsService.existsById(id)) {
             throw new ApartmentDoesNotExistException();
         }
         this.apartmentsService.deleteById(id);
-        return "Successfully deleted apartment with id=" + id;
+        Map<String, String> response = new HashMap<>();
+        response.put("deleted", Long.toString(id));
+        return response;
+//        return "Successfully deleted apartment with id=" + id;
     }
 }

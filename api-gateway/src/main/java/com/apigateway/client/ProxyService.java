@@ -9,6 +9,7 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 @Component
 public class ProxyService {
@@ -34,7 +35,7 @@ public class ProxyService {
     }
 
     @Retry(name = BACKEND_A)
-    public String deleteById(@PathVariable Long id) {
+    public Map<String, String> deleteById(@PathVariable Long id) {
         return apartmentsServiceClient.deleteById(id);
     }
 
