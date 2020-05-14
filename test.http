@@ -1,4 +1,4 @@
-### lab4
+### lab 4-5
 
 ### fetch entities
 GET http://localhost:8080/apartments/all
@@ -42,7 +42,7 @@ Content-Type: application/json
 GET http://localhost:8080/apartments/delete/1
 
 
-### lab3
+### lab 3
 
 ### api-gateway config
 GET http://localhost:8080/configs

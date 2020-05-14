@@ -1,5 +1,6 @@
 package com.euclient.apartmentsService;
 
+import com.euclient.KafkaProducerDemo;
 import com.euclient.exceptions.ApartmentDoesNotExistException;
 import com.euclient.exceptions.ValidationException;
 import com.euclient.responses.ApartmentsResponse;
@@ -38,7 +39,7 @@ public class ApartmentsController {
 
     @PostMapping(value = "/apartments/add")
     @ResponseBody
-    public Apartment add(@Valid @RequestBody Apartment apartments, BindingResult bindingResult) {
+    public Apartment add(@Valid @RequestBody Apartment apartments, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors()) {
             Map<String, String> errors = bindingResult
                     .getFieldErrors()
@@ -46,11 +47,13 @@ public class ApartmentsController {
                     .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
             throw new ValidationException(errors);
         }
-        return apartmentsService.add(apartments);
+        Apartment createdApartment = apartmentsService.add(apartments);
+        KafkaProducerDemo.sendCreateMessage(createdApartment);
+        return createdApartment;
     }
 
     @PostMapping("/apartments/update")
-    public Apartment updateById(@Valid @RequestBody Apartment apartments, BindingResult bindingResult) {
+    public Apartment updateById(@Valid @RequestBody Apartment apartments, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors()) {
             Map<String, String> errors = bindingResult
                     .getFieldErrors()
@@ -63,7 +66,9 @@ public class ApartmentsController {
             throw new ApartmentDoesNotExistException();
         }
 
-        return this.apartmentsService.updateById(apartments);
+        Apartment updatedApartment = apartmentsService.updateById(apartments);
+        KafkaProducerDemo.sendCreateMessage(updatedApartment);
+        return updatedApartment;
     }
 
     @GetMapping("/apartments/delete/{id}")

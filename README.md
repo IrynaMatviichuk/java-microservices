@@ -1,5 +1,5 @@
 # java-microservices
-## lab #4
+## lab #5
 
 ### requirements
 - docker
@@ -26,3 +26,4 @@
 - Service (instance 2): `http://localhost:8082`  
 - Api-gateway: `http://localhost:8080`  
 - Grafana UI: `http://localhost:3000`  
+- Kafka-consumer: `http://localhost:8088`  
