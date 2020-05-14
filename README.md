@@ -1,5 +1,5 @@
 # java-microservices
-## lab #4
+## lab #5
 
 ### requirements
 - docker
@@ -17,6 +17,7 @@
 - Additional information:
   - `dashboard.json` is at the root of the project
   - configurations in config server are stored in `/configurations` folder
+  - see logs of kafka-consumer `docker logs -f <container-name/container-id>`
 
 
 ### services
@@ -26,3 +27,4 @@
 - Service (instance 2): `http://localhost:8082`  
 - Api-gateway: `http://localhost:8080`  
 - Grafana UI: `http://localhost:3000`  
+- Kafka-consumer: `http://localhost:8088`  
