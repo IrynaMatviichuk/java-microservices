@@ -17,6 +17,7 @@
 - Additional information:
   - `dashboard.json` is at the root of the project
   - configurations in config server are stored in `/configurations` folder
+  - see logs of kafka-consumer `docker logs -f <container-name/container-id>`
 
 
 ### services
